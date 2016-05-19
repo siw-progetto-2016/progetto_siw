@@ -7,8 +7,8 @@ public class Esame {
 	private String codice;
 	private Paziente paziente;
 	private Medico medico;
-	private Date datapren;
 	private Date dataesame;
+	private Date datapren;
 	private Map<String,String> risultati;
 	
 	public Esame(){
