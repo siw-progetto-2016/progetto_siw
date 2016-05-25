@@ -2,28 +2,26 @@ package model;
 
 import java.util.*;
 
-public class Esame {
+public class tipologiaEsame {
 	private long id;
 	private String codice;
-	private Paziente paziente;
-	private Medico medico;
-	private Date dataesame;
-	private Date datapren;
-	private Map<String,String> risultati;
+	private String nome;
+	private String descrizione;
+	private float costo;
+	private Map<String,String> prerequisiti;
+	private List<String> indicatori;
 	
-	public Esame(){
+	public tipologiaEsame(){
 		
 	}
 
-	public Esame(long id, Paziente paziente, Medico medico, Date datapren, Date dataesame,String codice) {
+	public tipologiaEsame(String nome, long id, String descrizione, float costo,String codice) {
+		this.nome = nome;
 		this.id = id;
-		this.paziente = paziente;
-		this.medico = medico;
-		this.datapren = datapren;
-		this.dataesame = dataesame;
+		this.descrizione = descrizione;
+		this.costo = costo;
 		this.codice = codice;
 	}
-
 
 	public String getCodice() {
 		return codice;
@@ -31,6 +29,22 @@ public class Esame {
 
 	public void setCodice(String codice) {
 		this.codice = codice;
+	}
+
+	public void setPrerequisiti(Map<String, String> prerequisiti) {
+		this.prerequisiti = prerequisiti;
+	}
+
+	public void setIndicatori(List<String> indicatori) {
+		this.indicatori = indicatori;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public long getId() {
@@ -41,44 +55,29 @@ public class Esame {
 		this.id = id;
 	}
 
-	public Paziente getPaziente() {
-		return paziente;
+	public String getDescrizione() {
+		return descrizione;
 	}
 
-	public void setPaziente(Paziente paziente) {
-		this.paziente = paziente;
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
 	}
 
-	public Medico getMedico() {
-		return medico;
+	public float getCosto() {
+		return costo;
 	}
 
-	public void setMedico(Medico medico) {
-		this.medico = medico;
+	public void setCosto(float costo) {
+		this.costo = costo;
 	}
 
-	public Date getDatapren() {
-		return datapren;
+	public Map<String, String> getPrerequisiti() {
+		return prerequisiti;
 	}
 
-	public void setDatapren(Date datapren) {
-		this.datapren = datapren;
+	public List<String> getIndicatori() {
+		return indicatori;
 	}
 
-	public Date getDataesame() {
-		return dataesame;
-	}
-
-	public void setDataesame(Date dataesame) {
-		this.dataesame = dataesame;
-	}
-
-	public Map<String, String> getRisultati() {
-		return risultati;
-	}
-	
-	public void setRisultati(Map<String, String> risultati) {
-		this.risultati = risultati;
-	}
 
 }
