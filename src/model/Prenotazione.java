@@ -2,7 +2,7 @@ package model;
 
 import java.util.*;
 
-public class Esame {
+public class Prenotazione {
 	private long id;
 	private String codice;
 	private Paziente paziente;
@@ -11,11 +11,11 @@ public class Esame {
 	private Date datapren;
 	private Map<String,String> risultati;
 	
-	public Esame(){
+	public Prenotazione(){
 		
 	}
 
-	public Esame(long id, Paziente paziente, Medico medico, Date datapren, Date dataesame,String codice) {
+	public Prenotazione(long id, Paziente paziente, Medico medico, Date datapren, Date dataesame,String codice) {
 		this.id = id;
 		this.paziente = paziente;
 		this.medico = medico;

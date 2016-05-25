@@ -8,23 +8,13 @@
 </head>
 <body>
 	<div>
-		<h2>Login utente</h2>
+		<h2>Svegli un operazione</h2>
 		<div>
-			<div class="form_container">
-				<form action="controller" method="post">
-					<div class="form-group">
-						<p>${idError}</p>
-						<label>id utente</label> <input type="text" class="form-control"
-							placeholder="Id" name="id"  value='${param["id"]}' />
-					</div>
-					<div class="form-group">
-						<p>${pwdError}</p>
-						<label>Password</label> <input type="text" class="form-control"
-							placeholder="Password" name="pwd" value='${param["pwd"]}' />
-					</div>
-					<button type="submit">Invia</button>
-				</form>
-			</div>
+		  <a href="login.jsp">Login</a>
+		</div>
+		<hr></hr>
+		<div>
+		  <a href="esami.jsp">Elenco degli esami</a>
 		</div>
 	</div>
 </body>

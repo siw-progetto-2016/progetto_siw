@@ -2,7 +2,7 @@ package model;
 
 import java.util.*;
 
-public class tipologiaEsame {
+public class Esame {
 	private long id;
 	private String codice;
 	private String nome;
@@ -11,11 +11,11 @@ public class tipologiaEsame {
 	private Map<String,String> prerequisiti;
 	private List<String> indicatori;
 	
-	public tipologiaEsame(){
+	public Esame(){
 		
 	}
 
-	public tipologiaEsame(String nome, long id, String descrizione, float costo,String codice) {
+	public Esame(String nome, long id, String descrizione, float costo,String codice) {
 		this.nome = nome;
 		this.id = id;
 		this.descrizione = descrizione;
