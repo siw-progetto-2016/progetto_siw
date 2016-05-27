@@ -1,23 +1,30 @@
-package model;
+package it.uniroma3.model;
 
-import java.util.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
+@Entity
 public class Esame {
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@Column(nullable = false)
 	private String codice;
+	@Column(nullable = false)
 	private String nome;
+	@Column(length = 2000)
 	private String descrizione;
+	@Column(nullable = false)
 	private float costo;
-	private Map<String,String> prerequisiti;
-	private List<String> indicatori;
+
 	
 	public Esame(){
 		
 	}
 
-	public Esame(String nome, long id, String descrizione, float costo,String codice) {
+	public Esame(String codice,String nome, String descrizione, float costo) {
 		this.nome = nome;
-		this.id = id;
 		this.descrizione = descrizione;
 		this.costo = costo;
 		this.codice = codice;
@@ -31,13 +38,6 @@ public class Esame {
 		this.codice = codice;
 	}
 
-	public void setPrerequisiti(Map<String, String> prerequisiti) {
-		this.prerequisiti = prerequisiti;
-	}
-
-	public void setIndicatori(List<String> indicatori) {
-		this.indicatori = indicatori;
-	}
 
 	public String getNome() {
 		return nome;
@@ -71,13 +71,6 @@ public class Esame {
 		this.costo = costo;
 	}
 
-	public Map<String, String> getPrerequisiti() {
-		return prerequisiti;
-	}
-
-	public List<String> getIndicatori() {
-		return indicatori;
-	}
 
 
 }

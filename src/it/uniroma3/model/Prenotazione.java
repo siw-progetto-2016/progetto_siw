@@ -1,4 +1,4 @@
-package model;
+package it.uniroma3.model;
 
 import java.util.*;
 
