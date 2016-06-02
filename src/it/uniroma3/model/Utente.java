@@ -1,15 +1,20 @@
 package it.uniroma3.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "pazienti")
-public class Paziente {
+@Table(name = "utenti")
+public class Utente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -21,17 +26,27 @@ public class Paziente {
 	private String userName;
 	@Column(nullable = false)
 	private String pwd;
-	
-	public Paziente(){
-		
+	@OneToMany(mappedBy = "utente",fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
+	private List<Prenotazione> prenotazioni;
+
+	public Utente(){
+
 	}
-	
-	public Paziente(String nome,String cognome,String user,long id,String pwd){
+
+	public Utente(String nome,String cognome,String user,long id,String pwd){
 		this.nome = nome;
 		this.cognome = cognome;
 		this.userName = user;
 		this.id = id;
 		this.pwd = pwd;
+	}
+
+	public List<Prenotazione> getPrenotazioni() {
+		return prenotazioni;
+	}
+
+	public void setPrenotazioni(List<Prenotazione> prenotazioni) {
+		this.prenotazioni = prenotazioni;
 	}
 
 	public String getNome() {
@@ -81,6 +96,6 @@ public class Paziente {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
+
 
 }

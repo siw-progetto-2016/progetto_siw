@@ -2,22 +2,48 @@ package it.uniroma3.model;
 
 import java.util.*;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+@Entity
+@Table(name = "prenotazioni")
 public class Prenotazione {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@Column(nullable = false)
 	private String codice;
-	private Paziente paziente;
+	@Column(nullable = false)
 	private Medico medico;
+	@Temporal(TemporalType.DATE)
 	private Date dataesame;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date datapren;
+	
+	@ManyToOne
+	@JoinColumn(name="utente_id")
+	private Utente utente;
+	
+	@ManyToOne
+	@JoinColumn(name="esame_id")
+	private Esame esame;
+
 	private Map<String,String> risultati;
 	
 	public Prenotazione(){
 		
 	}
 
-	public Prenotazione(long id, Paziente paziente, Medico medico, Date datapren, Date dataesame,String codice) {
+	public Prenotazione(long id, Utente utente, Medico medico, Date datapren, Date dataesame,String codice) {
 		this.id = id;
-		this.paziente = paziente;
+		this.utente = utente;
 		this.medico = medico;
 		this.datapren = datapren;
 		this.dataesame = dataesame;
@@ -41,22 +67,14 @@ public class Prenotazione {
 		this.id = id;
 	}
 
-	public Paziente getPaziente() {
-		return paziente;
+	public Utente getUtente() {
+		return utente;
 	}
 
-	public void setPaziente(Paziente paziente) {
-		this.paziente = paziente;
+	public void setUtente(Utente utente) {
+		this.utente = utente;
 	}
-
-	public Medico getMedico() {
-		return medico;
-	}
-
-	public void setMedico(Medico medico) {
-		this.medico = medico;
-	}
-
+	
 	public Date getDatapren() {
 		return datapren;
 	}
@@ -79,6 +97,22 @@ public class Prenotazione {
 	
 	public void setRisultati(Map<String, String> risultati) {
 		this.risultati = risultati;
+	}
+
+	public Medico getMedico() {
+		return medico;
+	}
+
+	public void setMedico(Medico medico) {
+		this.medico = medico;
+	}
+
+	public Esame getEsame() {
+		return esame;
+	}
+
+	public void setEsame(Esame esame) {
+		this.esame = esame;
 	}
 
 }

@@ -1,12 +1,21 @@
 package it.uniroma3.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "esami")
 public class Esame {
+	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@Column(nullable = false)
@@ -17,6 +26,9 @@ public class Esame {
 	private String descrizione;
 	@Column(nullable = false)
 	private float costo;
+	
+	@OneToMany(mappedBy = "esame", fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
+    private List<Prenotazione> prenotazioni;
 
 	
 	public Esame(){

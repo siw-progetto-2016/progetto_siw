@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
+<%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -7,25 +9,41 @@
 <title>Pagina principale</title>
 </head>
 <body>
-	<div>
-		<h2>Login utente</h2>
+	<f:view>
 		<div>
-			<div class="form_container">
-				<form action="controller" method="post">
-					<div class="form-group">
-						<p>${idError}</p>
-						<label>id utente</label> <input type="text" class="form-control"
-							placeholder="Id" name="id"  value='${param["id"]}' />
+			<h2>Login utente</h2>
+			<div>
+				<h:form>
+					<div class="form_container">
+						<label for="inputUsername">Username: </label>
+						<div>
+							<h:inputText styleClass="form-control"
+								value="#{utenteController.userName}" required="true"
+								requiredMessage="Username obbligatorio" id="id" />
+							<h:message for="id" />
+						</div>
+						<div>
+							<label for="inputPassword">Password:</label>
+							<div>
+								<h:inputSecret styleClass="form-control"
+									value="#{utenteController.pwd}" required="true"
+									requiredMessage="Password obbligatoria" id="password" />
+								<h:message for="password" />
+							</div>
+						</div>
+
+						<div>
+							<div>
+								<label class="control-label" for="inputError1">${utenteController.error}</label>
+							</div>
+							<h:commandButton styleClass="btn btn-lg btn-primary btn-block"
+								value="Submit" action="#{utenteController.convalida}" />
+						</div>
 					</div>
-					<div class="form-group">
-						<p>${pwdError}</p>
-						<label>Password</label> <input type="text" class="form-control"
-							placeholder="Password" name="pwd" value='${param["pwd"]}' />
-					</div>
-					<button type="submit">Invia</button>
-				</form>
+				</h:form>
 			</div>
+
 		</div>
-	</div>
+	</f:view>
 </body>
 </html>

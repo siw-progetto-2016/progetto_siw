@@ -19,7 +19,7 @@
 			<hr></hr>
 			<div>
 				<h:form>
-					<h:commandLink action="#{esameController.listEsami}"
+					<h:commandLink action="#{esameController.listaEsami}"
 						value="Lista degli esami" />
 				</h:form>
 			</div>
