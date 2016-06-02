@@ -4,10 +4,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity
+@Entity(name = "esami")
+@Table(name = "esami")
 public class Esame {
+	
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
 	private long id;
 	@Column(nullable = false)
 	private String codice;

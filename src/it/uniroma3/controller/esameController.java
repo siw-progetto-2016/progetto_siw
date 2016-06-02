@@ -21,25 +21,25 @@ public class esameController {
 	private List<Esame> esami;
 
 	@EJB
-	private EsameFacade productFacade;
+	private EsameFacade esameFacade;
 
 	public String createEsame() {
-		this.esame = productFacade.createEsame(codice,nome,descrizione,costo);
+		this.esame = esameFacade.createEsame(codice,nome,descrizione,costo);
 		return "esame"; 
 	}
 
 	public String listEsami() {
-		this.esami = productFacade.getAllEsami();
+		this.esami = esameFacade.getAllEsami();
 		return "esami"; 
 	}
 
 	public String findEsame() {
-		this.esame = productFacade.getEsame(id);
+		this.esame = esameFacade.getEsame(id);
 		return "esame";
 	}
 
 	public String findProduct(Long id) {
-		this.esame = productFacade.getEsame(id);
+		this.esame = esameFacade.getEsame(id);
 		return "product";
 	}
 
