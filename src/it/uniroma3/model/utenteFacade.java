@@ -1,12 +1,10 @@
 package it.uniroma3.model;
 
-import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaQuery;
+
 
 @Stateless
 public class utenteFacade {
@@ -20,16 +18,6 @@ public class utenteFacade {
 		return u;
 	}
 
-	public List<Prenotazione> getAllPrenotazioni() {
-		CriteriaQuery<Prenotazione> cq = em.getCriteriaBuilder().createQuery(Prenotazione.class);
-		cq.select(cq.from(Prenotazione.class));
-		List<Prenotazione> prenotazioni = em.createQuery(cq).getResultList();
-		return prenotazioni;
-	}
 
-	public Prenotazione getPrenotazione(long id) {
-			Prenotazione pren = em.find(Prenotazione.class, id);
-			return pren;
-	}
 
 }

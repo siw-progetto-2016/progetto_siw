@@ -1,0 +1,263 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.5.3
+-- Dumped by pg_dump version 9.5.3
+
+-- Started on 2016-06-03 17:48:17
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 1 (class 3079 OID 12355)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2138 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 181 (class 1259 OID 24649)
+-- Name: esami; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE esami (
+    id bigint NOT NULL,
+    codice character varying(255) NOT NULL,
+    costo real NOT NULL,
+    descrizione character varying(2000),
+    nome character varying(255) NOT NULL
+);
+
+
+ALTER TABLE esami OWNER TO postgres;
+
+--
+-- TOC entry 182 (class 1259 OID 24657)
+-- Name: medici; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE medici (
+    id bigint NOT NULL,
+    cognome character varying(255) NOT NULL,
+    nome character varying(255) NOT NULL,
+    specializzazione character varying(255) NOT NULL
+);
+
+
+ALTER TABLE medici OWNER TO postgres;
+
+--
+-- TOC entry 183 (class 1259 OID 24665)
+-- Name: openjpa_sequence_table; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE openjpa_sequence_table (
+    id smallint NOT NULL,
+    sequence_value bigint
+);
+
+
+ALTER TABLE openjpa_sequence_table OWNER TO postgres;
+
+--
+-- TOC entry 184 (class 1259 OID 24670)
+-- Name: prenotazioni; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE prenotazioni (
+    id bigint NOT NULL,
+    codice character varying(255) NOT NULL,
+    dataesame date,
+    datapren timestamp without time zone,
+    esame_id bigint,
+    utente_id bigint
+);
+
+
+ALTER TABLE prenotazioni OWNER TO postgres;
+
+--
+-- TOC entry 185 (class 1259 OID 24675)
+-- Name: utenti; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE utenti (
+    id bigint NOT NULL,
+    cognome character varying(255) NOT NULL,
+    nome character varying(255) NOT NULL,
+    pwd character varying(255) NOT NULL,
+    username character varying(255) NOT NULL
+);
+
+
+ALTER TABLE utenti OWNER TO postgres;
+
+--
+-- TOC entry 2126 (class 0 OID 24649)
+-- Dependencies: 181
+-- Data for Name: esami; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY esami (id, codice, costo, descrizione, nome) FROM stdin;
+1	OCU01	45	Esame della vista	oculistica
+2	SAN01	50	Analisi del sangue	sangue
+\.
+
+
+--
+-- TOC entry 2127 (class 0 OID 24657)
+-- Dependencies: 182
+-- Data for Name: medici; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY medici (id, cognome, nome, specializzazione) FROM stdin;
+1	azzone	paolo	oculista
+2	pippo	franco	cardioloco
+\.
+
+
+--
+-- TOC entry 2128 (class 0 OID 24665)
+-- Dependencies: 183
+-- Data for Name: openjpa_sequence_table; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY openjpa_sequence_table (id, sequence_value) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2129 (class 0 OID 24670)
+-- Dependencies: 184
+-- Data for Name: prenotazioni; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY prenotazioni (id, codice, dataesame, datapren, esame_id, utente_id) FROM stdin;
+1	OCU001	2016-06-30	2016-05-31 00:00:00	1	1
+2	SAN001	2016-07-01	2016-06-03 00:00:00	2	2
+\.
+
+
+--
+-- TOC entry 2130 (class 0 OID 24675)
+-- Dependencies: 185
+-- Data for Name: utenti; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY utenti (id, cognome, nome, pwd, username) FROM stdin;
+1	verdi	giuseppe	123456	peppino
+2	rossi	vasco	654321	vascone
+\.
+
+
+--
+-- TOC entry 1999 (class 2606 OID 24656)
+-- Name: esami_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY esami
+    ADD CONSTRAINT esami_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2001 (class 2606 OID 24664)
+-- Name: medici_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY medici
+    ADD CONSTRAINT medici_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2003 (class 2606 OID 24669)
+-- Name: openjpa_sequence_table_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY openjpa_sequence_table
+    ADD CONSTRAINT openjpa_sequence_table_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2007 (class 2606 OID 24674)
+-- Name: prenotazioni_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY prenotazioni
+    ADD CONSTRAINT prenotazioni_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2009 (class 2606 OID 24684)
+-- Name: u_utenti_username; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY utenti
+    ADD CONSTRAINT u_utenti_username UNIQUE (username);
+
+
+--
+-- TOC entry 2011 (class 2606 OID 24682)
+-- Name: utenti_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY utenti
+    ADD CONSTRAINT utenti_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2004 (class 1259 OID 24685)
+-- Name: i_prntzon_esame; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX i_prntzon_esame ON prenotazioni USING btree (esame_id);
+
+
+--
+-- TOC entry 2005 (class 1259 OID 24686)
+-- Name: i_prntzon_utente; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX i_prntzon_utente ON prenotazioni USING btree (utente_id);
+
+
+--
+-- TOC entry 2137 (class 0 OID 0)
+-- Dependencies: 6
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2016-06-03 17:48:18
+
+--
+-- PostgreSQL database dump complete
+--
+

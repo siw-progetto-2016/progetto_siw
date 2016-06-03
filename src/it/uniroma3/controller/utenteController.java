@@ -5,15 +5,15 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 
 import it.uniroma3.model.Prenotazione;
 import it.uniroma3.model.Utente;
 import it.uniroma3.model.utenteFacade;
 
 @ManagedBean
+@SessionScoped
 public class utenteController {
-	@ManagedProperty(value="#{pren.id}")
 	private long id;
 	private String nome;
 	private String cognome;
@@ -39,20 +39,7 @@ public class utenteController {
 		return "paziente";
 	}
 
-	public String listaPrenotazioni() {
-		this.prenotazioni = utenteFacade.getAllPrenotazioni();
-		return "prenotazioni"; 
-	}
 
-	public String findPrenotazione() {
-		this.prenotazione = utenteFacade.getPrenotazione(id);
-		return "prenotazione";
-	}
-
-	public String findPrenotazione(Long id) {
-		this.prenotazione= utenteFacade.getPrenotazione(id);
-		return "prenotazione";
-	}
 
 
 	public Utente getUtente() {

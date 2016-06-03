@@ -6,11 +6,11 @@
 </head>
 <body>
 	<f:view>
-		<h1>${utenteController.prenotazione.codice}</h1>
+		<h1>${prenotazioneController.prenotazione.codice}</h1>
 		<h2>Dettagli</h2>
-		<div>Data esame: ${utenteController.prenotazione.dataesame}</div>
-		<div>Data prenotazione: ${utenteController.prenotazione.datapren}</div>
-		<!-- <div>Medico: ${utenteController.prenotazione.getMedico}</div>  -->
+		<div>Data esame: ${prenotazioneController.prenotazione.dataesame}</div>
+		<div>Data prenotazione: ${prenotazioneController.prenotazione.datapren}</div>
+		<div>Medico: ${utenteController.prenotazione.getMedico.getNome()}</div> 
 	</f:view>
 </body>
 </html>

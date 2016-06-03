@@ -1,5 +1,6 @@
 package it.uniroma3.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -39,6 +40,7 @@ public class Utente {
 		this.userName = user;
 		this.id = id;
 		this.pwd = pwd;
+		this.prenotazioni = new ArrayList<Prenotazione>();
 	}
 
 	public List<Prenotazione> getPrenotazioni() {

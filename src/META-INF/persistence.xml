@@ -5,15 +5,8 @@
 	<persistence-unit name="progetto-unit" transaction-type="JTA">
 		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
 		<jta-data-source>PostgreSQL Database</jta-data-source> 
-		<class>it.uniroma3.model.esame</class>
-		<class>it.uniroma3.model.medico</class>
-		<class>it.uniroma3.model.prenotazione</class>
-		<class>it.uniroma3.model.utente</class>
+		<class>it.uniroma3.model</class>
 		<properties>
-			<!-- <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost/progetto2016" />
-			<property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver" />
-			<property name="openjpa.ConnectionUserName" value="postgres" />
-			<property name="openjpa.ConnectionPassword" value="gpmgdb" />  -->
 			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
 		</properties>
 	</persistence-unit>

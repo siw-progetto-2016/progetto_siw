@@ -17,7 +17,7 @@
 		<hr></hr>
 		<div>
 			<h:form>
-				<h:commandLink action="#{utenteController.listaPrenotazioni}"
+				<h:commandLink action="#{prenotazioneController.listaPrenotazioni(utenteController.utente)}"
 					value="Elenco delle prenotazioni" />
 			</h:form>
 		</div>

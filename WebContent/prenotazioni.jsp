@@ -14,14 +14,14 @@
 		<h:form>
 			<table>
 				<tr>
-					<th>Data</th>
 					<th>Codice</th>
+					<th>Id prenotazione</th>
 				</tr>
-				<c:forEach var="pren" items="#{utenteController.prenotazioni}">
+				<c:forEach var="pren" items="#{prenotazioneController.prenotazioni}">
 					<tr>
-						<td><h:commandLink action="#{utenteController.findPrenotazione}"
-								value="#{pren.dataesame}">
-								<f:param name="id" value="#{pren.id}" />
+						<td><h:commandLink action="#{prenotazioneController.findPrenotazione}"
+								value="#{pren.codice}">
+								<f:param name="id" value="#{pren.id}" /> 
 							</h:commandLink></td>
 						<td>${pren.id}</td>
 					</tr>

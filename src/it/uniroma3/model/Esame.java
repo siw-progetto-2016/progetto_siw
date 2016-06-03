@@ -1,5 +1,6 @@
 package it.uniroma3.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -40,6 +41,7 @@ public class Esame {
 		this.descrizione = descrizione;
 		this.costo = costo;
 		this.codice = codice;
+		this.prenotazioni = new ArrayList<Prenotazione>();
 	}
 
 	public String getCodice() {
