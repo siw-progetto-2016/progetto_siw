@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
+import it.uniroma3.model.Esame;
 import it.uniroma3.model.Medico;
 import it.uniroma3.model.Prenotazione;
 import it.uniroma3.model.Utente;
@@ -18,6 +19,7 @@ public class prenotazioneController {
 	private long id;
 	private String codice;
 	private Medico medico;
+	private Esame esame;
 	private Date dataesame;
 	private Date datapren;
 	private Prenotazione prenotazione;
@@ -32,11 +34,15 @@ public class prenotazioneController {
 	}
 
 	public String findPrenotazione(Long id) {
-		this.prenotazione= prenotazioneFacade.getPrenotazione(id);
+		this.prenotazione = prenotazioneFacade.getPrenotazione(id);
+		this.esame = prenotazioneFacade.getEsamecorrente(prenotazione);
+		this.medico = prenotazioneFacade.getMedicocorrente(prenotazione);
 		return "prenotazione";
 	}
 	public String findPrenotazione() {
-		this.prenotazione= prenotazioneFacade.getPrenotazione(id);
+		this.prenotazione = prenotazioneFacade.getPrenotazione(id);
+		this.esame = prenotazioneFacade.getEsamecorrente(prenotazione);
+		this.medico = prenotazioneFacade.getMedicocorrente(prenotazione);
 		return "prenotazione";
 	}
 
@@ -82,6 +88,22 @@ public class prenotazioneController {
 	}
 	public void setPrenotazioni(List<Prenotazione> prenotazioni) {
 		this.prenotazioni = prenotazioni;
+	}
+
+	public Esame getEsame() {
+		return esame;
+	}
+
+	public void setEsame(Esame esame) {
+		this.esame = esame;
+	}
+
+	public prenotazioneFacade getPrenotazioneFacade() {
+		return prenotazioneFacade;
+	}
+
+	public void setPrenotazioneFacade(prenotazioneFacade prenotazioneFacade) {
+		this.prenotazioneFacade = prenotazioneFacade;
 	}
 
 

@@ -2,8 +2,10 @@ package it.uniroma3.model;
 
 import java.util.*;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,20 +22,22 @@ public class Prenotazione {
 	private long id;
 	@Column(nullable = false)
 	private String codice;
-	@Column(nullable = false)
-	private Medico medico;
 	@Temporal(TemporalType.DATE)
 	private Date dataesame;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date datapren;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="utente_id")
 	private Utente utente;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="esame_id")
 	private Esame esame;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="medico_id")
+	private Medico medico;
 
 	private Map<String,String> risultati;
 	

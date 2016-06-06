@@ -42,7 +42,7 @@ public class esameController {
 		this.esame = esameFacade.getEsame(id);
 		return "esame";
 	}
-
+	
 
 	public long getId() {
 		return id;

@@ -25,5 +25,15 @@ public class prenotazioneFacade {
 		return pren;
 	}
 
+	public Esame getEsamecorrente(Prenotazione pren) {
+		Esame esame = pren.getEsame();
+		return esame;
+	}
+
+	public Medico getMedicocorrente(Prenotazione pren) {
+		Medico medico = pren.getMedico();
+		return medico;
+	}
+
 
 }

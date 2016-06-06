@@ -3,7 +3,6 @@ package it.uniroma3.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,7 +26,7 @@ public class Utente {
 	private String userName;
 	@Column(nullable = false)
 	private String pwd;
-	@OneToMany(mappedBy = "utente",fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy = "utente",fetch=FetchType.EAGER)
 	private List<Prenotazione> prenotazioni;
 
 	public Utente(){

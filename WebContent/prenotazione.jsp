@@ -8,9 +8,10 @@
 	<f:view>
 		<h1>${prenotazioneController.prenotazione.codice}</h1>
 		<h2>Dettagli</h2>
-		<div>Data esame: ${prenotazioneController.prenotazione.dataesame}</div>
-		<div>Data prenotazione: ${prenotazioneController.prenotazione.datapren}</div>
-		<div>Medico: ${utenteController.prenotazione.getMedico.getNome()}</div> 
+		<div>Data esame: 		 ${prenotazioneController.prenotazione.dataesame}</div>
+		<div>Data prenotazione:  ${prenotazioneController.prenotazione.datapren}</div>
+		<div>Medico: 			 ${prenotazioneController.medico.nome} ${prenotazioneController.medico.cognome}</div> 
+		<div>Tipologia di esame: ${prenotazioneController.esame.nome}</div> 
 	</f:view>
 </body>
 </html>

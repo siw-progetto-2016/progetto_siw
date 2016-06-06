@@ -1,12 +1,15 @@
 package it.uniroma3.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 @Entity
 @Table(name = "medici")
 public class Medico {
@@ -19,6 +22,9 @@ public class Medico {
 	private String cognome;
 	@Column(nullable = false)
 	private String specializzazione;
+	
+	@OneToMany(mappedBy = "medico", fetch=FetchType.EAGER)
+    private List<Prenotazione> prenotazioni;
 
 
 	public Medico(){
@@ -63,10 +69,6 @@ public class Medico {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-	@Override
-	public String toString() {
-		return "[Nome=" + nome+ ", Cognome=" + cognome + "]";
 	}
 
 
