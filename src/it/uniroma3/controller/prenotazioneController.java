@@ -11,10 +11,10 @@ import it.uniroma3.model.Esame;
 import it.uniroma3.model.Medico;
 import it.uniroma3.model.Prenotazione;
 import it.uniroma3.model.Utente;
-import it.uniroma3.model.prenotazioneFacade;
+import it.uniroma3.model.PrenotazioneFacade;
 
 @ManagedBean
-public class prenotazioneController {
+public class prenotazioneController {	
 	@ManagedProperty(value="#{param.id}")
 	private long id;
 	private String codice;
@@ -22,11 +22,17 @@ public class prenotazioneController {
 	private Esame esame;
 	private Date dataesame;
 	private Date datapren;
+	private Utente utente;
 	private Prenotazione prenotazione;
 	private List<Prenotazione> prenotazioni;
 
 	@EJB
-	private prenotazioneFacade prenotazioneFacade;
+	private PrenotazioneFacade prenotazioneFacade;
+	
+	public String createPrenotazione() {
+		this.prenotazione = prenotazioneFacade.createPrenotazione(utente,medico,dataesame,codice);
+		return "prenotazione"; 
+	}
 
 	public String listaPrenotazioni(Utente utente) {
 		this.prenotazioni = prenotazioneFacade.getAllPrenotazioni(utente);
@@ -35,14 +41,14 @@ public class prenotazioneController {
 
 	public String findPrenotazione(Long id) {
 		this.prenotazione = prenotazioneFacade.getPrenotazione(id);
-		this.esame = prenotazioneFacade.getEsamecorrente(prenotazione);
-		this.medico = prenotazioneFacade.getMedicocorrente(prenotazione);
+		this.esame = prenotazione.getEsame();
+		this.medico = prenotazione.getMedico();
 		return "prenotazione";
 	}
 	public String findPrenotazione() {
 		this.prenotazione = prenotazioneFacade.getPrenotazione(id);
-		this.esame = prenotazioneFacade.getEsamecorrente(prenotazione);
-		this.medico = prenotazioneFacade.getMedicocorrente(prenotazione);
+		this.esame = prenotazione.getEsame();
+		this.medico = prenotazione.getMedico();
 		return "prenotazione";
 	}
 
@@ -98,13 +104,22 @@ public class prenotazioneController {
 		this.esame = esame;
 	}
 
-	public prenotazioneFacade getPrenotazioneFacade() {
+	public PrenotazioneFacade getPrenotazioneFacade() {
 		return prenotazioneFacade;
 	}
 
-	public void setPrenotazioneFacade(prenotazioneFacade prenotazioneFacade) {
+	public void setPrenotazioneFacade(PrenotazioneFacade prenotazioneFacade) {
 		this.prenotazioneFacade = prenotazioneFacade;
 	}
+
+	public Utente getUtente() {
+		return utente;
+	}
+
+	public void setUtente(Utente utente) {
+		this.utente = utente;
+	}
+	
 
 
 }

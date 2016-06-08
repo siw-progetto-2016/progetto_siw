@@ -1,5 +1,6 @@
 package it.uniroma3.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -8,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 @Stateless
-public class prenotazioneFacade {
+public class PrenotazioneFacade {
 	@PersistenceContext(unitName = "progetto-unit")
 	private EntityManager em;
 
@@ -25,15 +26,12 @@ public class prenotazioneFacade {
 		return pren;
 	}
 
-	public Esame getEsamecorrente(Prenotazione pren) {
-		Esame esame = pren.getEsame();
-		return esame;
+	public Prenotazione createPrenotazione(Utente utente, Medico medico, Date dataesame, String codice) {
+		Prenotazione pren = new Prenotazione(utente,medico,dataesame,codice);
+		em.persist(pren);
+		return pren;
 	}
 
-	public Medico getMedicocorrente(Prenotazione pren) {
-		Medico medico = pren.getMedico();
-		return medico;
-	}
 
 
 }

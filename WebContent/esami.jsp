@@ -28,7 +28,10 @@
 				</c:forEach>
 			</table>
 		</h:form>
-
+		<hr></hr>
+		<div>
+			<a href="index.jsp">Pagina principale</a>
+		</div>
 	</f:view>
 
 </body>

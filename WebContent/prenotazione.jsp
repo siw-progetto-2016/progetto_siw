@@ -12,6 +12,10 @@
 		<div>Data prenotazione:  ${prenotazioneController.prenotazione.datapren}</div>
 		<div>Medico: 			 ${prenotazioneController.medico.nome} ${prenotazioneController.medico.cognome}</div> 
 		<div>Tipologia di esame: ${prenotazioneController.esame.nome}</div> 
+		<hr></hr>
+		<div>
+			<a href="index.jsp">Pagina principale</a>
+		</div>
 	</f:view>
 </body>
 </html>

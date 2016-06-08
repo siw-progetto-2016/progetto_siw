@@ -19,15 +19,20 @@
 				</tr>
 				<c:forEach var="pren" items="#{prenotazioneController.prenotazioni}">
 					<tr>
-						<td><h:commandLink action="#{prenotazioneController.findPrenotazione}"
+						<td><h:commandLink
+								action="#{prenotazioneController.findPrenotazione}"
 								value="#{pren.codice}">
-								<f:param name="id" value="#{pren.id}" /> 
+								<f:param name="id" value="#{pren.id}" />
 							</h:commandLink></td>
 						<td>${pren.id}</td>
 					</tr>
 				</c:forEach>
 			</table>
 		</h:form>
+		<hr></hr>
+		<div>
+			<a href="index.jsp">Pagina principale</a>
+		</div>
 
 	</f:view>
 

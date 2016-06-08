@@ -14,13 +14,23 @@
 		<h2>Dettagli paziente</h2>
 		<div>Nome: ${utenteController.utente.nome}</div>
 		<div>Cognome: ${utenteController.utente.cognome}</div>
+		<div>Data di nascita: ${utenteController.utente.datadinascita}</div>
+		<div>Codice fiscale: ${utenteController.utente.cf}</div>
+		<div>Sesso: ${utenteController.utente.sesso}</div>
+		<div>Email: ${utenteController.utente.email}</div>
 		<hr></hr>
 		<div>
 			<h:form>
-				<h:commandLink action="#{prenotazioneController.listaPrenotazioni(utenteController.utente)}"
+				<h:commandLink
+					action="#{prenotazioneController.listaPrenotazioni(utenteController.utente)}"
 					value="Elenco delle prenotazioni" />
 			</h:form>
 		</div>
+		<hr></hr>
+		<div>
+			<a href="index.jsp">Pagina principale</a>
+		</div>
 	</f:view>
+
 </body>
 </html>

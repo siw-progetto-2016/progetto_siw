@@ -44,6 +44,10 @@
 			</div>
 
 		</div>
+		<hr></hr>
+		<div>
+			<a href="index.jsp">Pagina principale</a>
+		</div>
 	</f:view>
 </body>
 </html>

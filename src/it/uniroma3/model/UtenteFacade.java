@@ -7,7 +7,7 @@ import javax.persistence.Query;
 
 
 @Stateless
-public class utenteFacade {
+public class UtenteFacade {
 	
 	@PersistenceContext(unitName = "progetto-unit")
 	private EntityManager em;

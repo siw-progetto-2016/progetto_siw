@@ -1,6 +1,7 @@
 package it.uniroma3.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "utenti")
@@ -21,26 +24,43 @@ public class Utente {
 	@Column(nullable = false)
 	private String nome;
 	@Column(nullable = false)
+	private String cf;
+	@Column(nullable = false)
+	private String sesso;
+	@Column(nullable = false)
+	private String email;
+	@Column(nullable = false)
 	private String cognome;
 	@Column(nullable = false,unique = true)
 	private String userName;
 	@Column(nullable = false)
 	private String pwd;
+	@Column(nullable = false)
+	private String ruolo;
+	@Temporal(TemporalType.DATE)
+	private Date datadinascita;
 	@OneToMany(mappedBy = "utente",fetch=FetchType.EAGER)
 	private List<Prenotazione> prenotazioni;
 
 	public Utente(){
 
 	}
-
-	public Utente(String nome,String cognome,String user,long id,String pwd){
+    
+	
+	public Utente(String nome, String cf, String sesso, String email, String cognome, String userName, String pwd,
+			String ruolo, Date datadinascita) {
 		this.nome = nome;
+		this.cf = cf;
+		this.sesso = sesso;
+		this.email = email;
 		this.cognome = cognome;
-		this.userName = user;
-		this.id = id;
+		this.userName = userName;
 		this.pwd = pwd;
+		this.ruolo = ruolo;
+		this.datadinascita = datadinascita;
 		this.prenotazioni = new ArrayList<Prenotazione>();
 	}
+
 
 	public List<Prenotazione> getPrenotazioni() {
 		return prenotazioni;
@@ -96,6 +116,46 @@ public class Utente {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public String getRuolo() {
+		return ruolo;
+	}
+
+	public void setRuolo(String ruolo) {
+		this.ruolo = ruolo;
+	}
+
+	public String getCf() {
+		return cf;
+	}
+
+	public void setCf(String cf) {
+		this.cf = cf;
+	}
+
+	public String getSesso() {
+		return sesso;
+	}
+
+	public void setSesso(String sesso) {
+		this.sesso = sesso;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getDatadinascita() {
+		return datadinascita;
+	}
+
+	public void setDatadinascita(Date datadinascita) {
+		this.datadinascita = datadinascita;
 	}
 
 

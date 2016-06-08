@@ -39,17 +39,15 @@ public class Prenotazione {
 	@JoinColumn(name="medico_id")
 	private Medico medico;
 
-	private Map<String,String> risultati;
 	
 	public Prenotazione(){
 		
 	}
 
-	public Prenotazione(long id, Utente utente, Medico medico, Date datapren, Date dataesame,String codice) {
-		this.id = id;
+	public Prenotazione(Utente utente, Medico medico, Date dataesame,String codice) {
 		this.utente = utente;
 		this.medico = medico;
-		this.datapren = datapren;
+		//this.datapren = datapren;
 		this.dataesame = dataesame;
 		this.codice = codice;
 	}
@@ -95,13 +93,6 @@ public class Prenotazione {
 		this.dataesame = dataesame;
 	}
 
-	public Map<String, String> getRisultati() {
-		return risultati;
-	}
-	
-	public void setRisultati(Map<String, String> risultati) {
-		this.risultati = risultati;
-	}
 
 	public Medico getMedico() {
 		return medico;

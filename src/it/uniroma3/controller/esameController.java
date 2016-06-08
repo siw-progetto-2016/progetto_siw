@@ -8,6 +8,9 @@ import javax.faces.bean.ManagedProperty;
 
 import it.uniroma3.model.Esame;
 import it.uniroma3.model.EsameFacade;
+import it.uniroma3.model.Indicatore;
+import it.uniroma3.model.Prerequisito;
+import it.uniroma3.model.Utente;
 
 @ManagedBean
 public class esameController {
@@ -18,7 +21,10 @@ public class esameController {
 	private String descrizione;
 	private float costo;
 	private Esame esame;
+	private Utente utente;
 	private List<Esame> esami;
+	private List<Prerequisito> prerequisiti;
+	private List<Indicatore> indicatori;;
 
 	@EJB
 	private EsameFacade esameFacade;
@@ -32,14 +38,23 @@ public class esameController {
 		this.esami = esameFacade.getAllEsami();
 		return "esami"; 
 	}
+	public List<Esame> testEsami() {
+		this.esami = esameFacade.getAllEsami();
+		return esami; 
+	}
+
 
 	public String findEsame() {
 		this.esame = esameFacade.getEsame(id);
+		this.prerequisiti = esame.getPrerequisiti();
+		this.indicatori = esame.getIndicatori();
 		return "esame";
 	}
 
 	public String findEsame(Long id) {
 		this.esame = esameFacade.getEsame(id);
+		this.prerequisiti = esame.getPrerequisiti();
+		this.indicatori = esame.getIndicatori();
 		return "esame";
 	}
 	
@@ -98,6 +113,38 @@ public class esameController {
 
 	public void setEsame(Esame esame) {
 		this.esame = esame;
+	}
+
+	public List<Prerequisito> getPrerequisiti() {
+		return prerequisiti;
+	}
+
+	public void setPrerequisiti(List<Prerequisito> prerequisiti) {
+		this.prerequisiti = prerequisiti;
+	}
+
+	public List<Indicatore> getIndicatori() {
+		return indicatori;
+	}
+
+	public void setIndicatori(List<Indicatore> indicatori) {
+		this.indicatori = indicatori;
+	}
+
+	public EsameFacade getEsameFacade() {
+		return esameFacade;
+	}
+
+	public void setEsameFacade(EsameFacade esameFacade) {
+		this.esameFacade = esameFacade;
+	}
+
+	public Utente getUtente() {
+		return utente;
+	}
+
+	public void setUtente(Utente utente) {
+		this.utente = utente;
 	}
 
 

@@ -1,5 +1,6 @@
 package it.uniroma3.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -9,7 +10,7 @@ import javax.faces.bean.SessionScoped;
 
 import it.uniroma3.model.Prenotazione;
 import it.uniroma3.model.Utente;
-import it.uniroma3.model.utenteFacade;
+import it.uniroma3.model.UtenteFacade;
 
 @ManagedBean
 @SessionScoped
@@ -21,25 +22,36 @@ public class utenteController {
 	private String pwd;
 	private Utente utente;
 	private String error;
+	private String cf;
+	private String sesso;
+	private String email;
+	private Date datadinascita;
+	private String ruolo;
 	private Prenotazione prenotazione;
 	private List<Prenotazione> prenotazioni;
 
 	@EJB
-	private utenteFacade utenteFacade;
+	private UtenteFacade utenteFacade;
 
 	public String convalida() {
 		try {
-			this.utente=utenteFacade.convalida(userName, pwd);
+			this.utente = utenteFacade.convalida(userName, pwd);
+			this.ruolo = utente.getRuolo();
 		}
 		catch (EJBException e) {
 			this.setError("Username o password non corretti");
 			return "login";
 		} 
-		this.prenotazioni=this.utente.getPrenotazioni();
-		return "paziente";
+		if(this.ruolo.equals("admin"))
+			return "amministratore";
+		else
+		if(this.ruolo.equals("user"))
+			return "paziente";
+		
+					
+		return "login";
 	}
-
-
+	
 
 
 	public Utente getUtente() {
@@ -52,12 +64,12 @@ public class utenteController {
 	}
 
 
-	public utenteFacade getUtenteFacade() {
+	public UtenteFacade getUtenteFacade() {
 		return utenteFacade;
 	}
 
 
-	public void setUtenteFacade(utenteFacade utenteFacade) {
+	public void setUtenteFacade(UtenteFacade utenteFacade) {
 		this.utenteFacade = utenteFacade;
 	}
 
@@ -126,6 +138,56 @@ public class utenteController {
 
 	public void setPrenotazione(Prenotazione prenotazione) {
 		this.prenotazione = prenotazione;
+	}
+
+
+	public String getCf() {
+		return cf;
+	}
+
+
+	public void setCf(String cf) {
+		this.cf = cf;
+	}
+
+
+	public String getSesso() {
+		return sesso;
+	}
+
+
+	public void setSesso(String sesso) {
+		this.sesso = sesso;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public Date getDatadinascita() {
+		return datadinascita;
+	}
+
+
+	public void setDatadinascita(Date datadinascita) {
+		this.datadinascita = datadinascita;
+	}
+
+
+	public String getRuolo() {
+		return ruolo;
+	}
+
+
+	public void setRuolo(String ruolo) {
+		this.ruolo = ruolo;
 	}
 
 
