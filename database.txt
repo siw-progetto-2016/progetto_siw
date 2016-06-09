@@ -5,7 +5,7 @@
 -- Dumped from database version 9.5.3
 -- Dumped by pg_dump version 9.5.3
 
--- Started on 2016-06-06 20:13:03
+-- Started on 2016-06-09 20:15:50
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -24,7 +24,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2139 (class 0 OID 0)
+-- TOC entry 2156 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -55,6 +55,20 @@ CREATE TABLE esami (
 ALTER TABLE esami OWNER TO postgres;
 
 --
+-- TOC entry 186 (class 1259 OID 32817)
+-- Name: indicatori; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE indicatori (
+    id bigint NOT NULL,
+    nome character varying(255) NOT NULL,
+    esame_id bigint
+);
+
+
+ALTER TABLE indicatori OWNER TO postgres;
+
+--
 -- TOC entry 182 (class 1259 OID 32776)
 -- Name: medici; Type: TABLE; Schema: public; Owner: postgres
 --
@@ -63,7 +77,8 @@ CREATE TABLE medici (
     id bigint NOT NULL,
     cognome character varying(255) NOT NULL,
     nome character varying(255) NOT NULL,
-    specializzazione character varying(255) NOT NULL
+    specializzazione character varying(255) NOT NULL,
+    username character varying(255)
 );
 
 
@@ -101,6 +116,21 @@ CREATE TABLE prenotazioni (
 ALTER TABLE prenotazioni OWNER TO postgres;
 
 --
+-- TOC entry 187 (class 1259 OID 32822)
+-- Name: prerequisiti; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE prerequisiti (
+    id bigint NOT NULL,
+    nome character varying(255) NOT NULL,
+    valore character varying(255) NOT NULL,
+    esame_id bigint
+);
+
+
+ALTER TABLE prerequisiti OWNER TO postgres;
+
+--
 -- TOC entry 185 (class 1259 OID 32807)
 -- Name: utenti; Type: TABLE; Schema: public; Owner: postgres
 --
@@ -110,14 +140,19 @@ CREATE TABLE utenti (
     cognome character varying(255) NOT NULL,
     nome character varying(255) NOT NULL,
     pwd character varying(255) NOT NULL,
-    username character varying(255) NOT NULL
+    username character varying(255) NOT NULL,
+    ruolo character varying(255),
+    cf character varying(255),
+    email character varying(255),
+    sesso character varying(255),
+    datadinascita date
 );
 
 
 ALTER TABLE utenti OWNER TO postgres;
 
 --
--- TOC entry 2127 (class 0 OID 32768)
+-- TOC entry 2142 (class 0 OID 32768)
 -- Dependencies: 181
 -- Data for Name: esami; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -125,33 +160,46 @@ ALTER TABLE utenti OWNER TO postgres;
 COPY esami (id, codice, costo, descrizione, nome) FROM stdin;
 1	ABC	45	Analisi del sangue e delle urine	Analisi del sangue
 2	DEF	20	Visita oculistica generale	Visita oculistica
+3	GHI	35	Tomografia computerizzata	Tac
 \.
 
 
 --
--- TOC entry 2128 (class 0 OID 32776)
+-- TOC entry 2147 (class 0 OID 32817)
+-- Dependencies: 186
+-- Data for Name: indicatori; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY indicatori (id, nome, esame_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2143 (class 0 OID 32776)
 -- Dependencies: 182
 -- Data for Name: medici; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY medici (id, cognome, nome, specializzazione) FROM stdin;
-1	azzone	paolo	oculista
-2	il grande	pipino	cardiologo
+COPY medici (id, cognome, nome, specializzazione, username) FROM stdin;
+1	azzone	paolo	oculista	pazzo
+2	il grande	pipino	cardiologo	grapino
+3	salvini	matteo	radiologo	ruspa
 \.
 
 
 --
--- TOC entry 2129 (class 0 OID 32784)
+-- TOC entry 2144 (class 0 OID 32784)
 -- Dependencies: 183
 -- Data for Name: openjpa_sequence_table; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY openjpa_sequence_table (id, sequence_value) FROM stdin;
+0	301
 \.
 
 
 --
--- TOC entry 2130 (class 0 OID 32789)
+-- TOC entry 2145 (class 0 OID 32789)
 -- Dependencies: 184
 -- Data for Name: prenotazioni; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -159,23 +207,37 @@ COPY openjpa_sequence_table (id, sequence_value) FROM stdin;
 COPY prenotazioni (id, codice, dataesame, datapren, esame_id, medico_id, utente_id) FROM stdin;
 1	PREN001	2016-07-20	2016-05-30 00:00:00	1	1	2
 2	PREN002	2016-08-05	2016-06-01 00:00:00	2	2	1
+251	PREN003	2016-06-21	2016-06-09 11:03:08.492	3	3	2
 \.
 
 
 --
--- TOC entry 2131 (class 0 OID 32807)
+-- TOC entry 2148 (class 0 OID 32822)
+-- Dependencies: 187
+-- Data for Name: prerequisiti; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY prerequisiti (id, nome, valore, esame_id) FROM stdin;
+1	digiuno 12	Il paziente deve essere a digiuno da 12 ore	1
+2	salute	Il paziente non deve avere alcuna malattia	1
+\.
+
+
+--
+-- TOC entry 2146 (class 0 OID 32807)
 -- Dependencies: 185
 -- Data for Name: utenti; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY utenti (id, cognome, nome, pwd, username) FROM stdin;
-1	rossi	valentino	123456	doctor
-2	verd	giuseppe	654321	peppino
+COPY utenti (id, cognome, nome, pwd, username, ruolo, cf, email, sesso, datadinascita) FROM stdin;
+1	rossi	valentino	123456	doctor	user	RSSVNT80P17G135E	doctor@acme.com	M	1980-09-17
+2	verdi	giuseppe	654321	peppino	user	VRDGPP01A01F839F	peppinno@acme.com	M	1985-04-07
+3	bianchi	marco	abcdef	bianchino	admin	BNCMRC90M02L736A	bianchino@acme.com	M	1990-08-02
 \.
 
 
 --
--- TOC entry 1999 (class 2606 OID 32775)
+-- TOC entry 2008 (class 2606 OID 32775)
 -- Name: esami_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -184,7 +246,16 @@ ALTER TABLE ONLY esami
 
 
 --
--- TOC entry 2001 (class 2606 OID 32783)
+-- TOC entry 2024 (class 2606 OID 32821)
+-- Name: indicatori_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY indicatori
+    ADD CONSTRAINT indicatori_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2010 (class 2606 OID 32783)
 -- Name: medici_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -193,7 +264,7 @@ ALTER TABLE ONLY medici
 
 
 --
--- TOC entry 2003 (class 2606 OID 32788)
+-- TOC entry 2012 (class 2606 OID 32788)
 -- Name: openjpa_sequence_table_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -202,7 +273,7 @@ ALTER TABLE ONLY openjpa_sequence_table
 
 
 --
--- TOC entry 2008 (class 2606 OID 32793)
+-- TOC entry 2017 (class 2606 OID 32793)
 -- Name: prenotazioni_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -211,7 +282,16 @@ ALTER TABLE ONLY prenotazioni
 
 
 --
--- TOC entry 2010 (class 2606 OID 32816)
+-- TOC entry 2027 (class 2606 OID 32829)
+-- Name: prerequisiti_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY prerequisiti
+    ADD CONSTRAINT prerequisiti_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2019 (class 2606 OID 32816)
 -- Name: u_utenti_username; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -220,7 +300,7 @@ ALTER TABLE ONLY utenti
 
 
 --
--- TOC entry 2012 (class 2606 OID 32814)
+-- TOC entry 2021 (class 2606 OID 32814)
 -- Name: utenti_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -229,7 +309,15 @@ ALTER TABLE ONLY utenti
 
 
 --
--- TOC entry 2004 (class 1259 OID 32804)
+-- TOC entry 2022 (class 1259 OID 32830)
+-- Name: i_ndctori_indesame; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX i_ndctori_indesame ON indicatori USING btree (esame_id);
+
+
+--
+-- TOC entry 2013 (class 1259 OID 32804)
 -- Name: i_prntzon_esame; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -237,7 +325,7 @@ CREATE INDEX i_prntzon_esame ON prenotazioni USING btree (esame_id);
 
 
 --
--- TOC entry 2005 (class 1259 OID 32805)
+-- TOC entry 2014 (class 1259 OID 32805)
 -- Name: i_prntzon_medico; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -245,7 +333,7 @@ CREATE INDEX i_prntzon_medico ON prenotazioni USING btree (medico_id);
 
 
 --
--- TOC entry 2006 (class 1259 OID 32806)
+-- TOC entry 2015 (class 1259 OID 32806)
 -- Name: i_prntzon_utente; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -253,7 +341,15 @@ CREATE INDEX i_prntzon_utente ON prenotazioni USING btree (utente_id);
 
 
 --
--- TOC entry 2138 (class 0 OID 0)
+-- TOC entry 2025 (class 1259 OID 32831)
+-- Name: i_prrqust_reqesame; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX i_prrqust_reqesame ON prerequisiti USING btree (esame_id);
+
+
+--
+-- TOC entry 2155 (class 0 OID 0)
 -- Dependencies: 6
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -264,7 +360,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2016-06-06 20:13:04
+-- Completed on 2016-06-09 20:15:51
 
 --
 -- PostgreSQL database dump complete

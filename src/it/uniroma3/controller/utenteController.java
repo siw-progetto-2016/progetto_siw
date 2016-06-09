@@ -7,7 +7,6 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
 import it.uniroma3.model.Prenotazione;
 import it.uniroma3.model.Utente;
 import it.uniroma3.model.UtenteFacade;
@@ -52,6 +51,9 @@ public class utenteController {
 		return "login";
 	}
 	
+	public Utente findByUsername() {
+		 return utenteFacade.getUtente(userName);
+	}
 
 
 	public Utente getUtente() {

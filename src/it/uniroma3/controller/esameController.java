@@ -57,52 +57,58 @@ public class esameController {
 		this.indicatori = esame.getIndicatori();
 		return "esame";
 	}
-	
+
+	public Esame findByCode() {
+		this.esame = esameFacade.getEsame(codice);
+		return esame;
+	}
+
+
 
 	public long getId() {
 		return id;
 	}
-	
+
 	public void setId(long id) {
 		this.id = id;
 	}
-	
+
 	public String getCodice() {
 		return codice;
 	}
-	
+
 	public void setCodice(String codice) {
 		this.codice = codice;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public String getDescrizione() {
 		return descrizione;
 	}
-	
+
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-	
+
 	public float getCosto() {
 		return costo;
 	}
-	
+
 	public void setCosto(float costo) {
 		this.costo = costo;
 	}
-	
+
 	public List<Esame> getEsami() {
 		return esami;
 	}
-	
+
 	public void setEsami(List<Esame> esami) {
 		this.esami = esami;
 	}

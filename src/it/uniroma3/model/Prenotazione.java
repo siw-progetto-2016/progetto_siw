@@ -44,12 +44,13 @@ public class Prenotazione {
 		
 	}
 
-	public Prenotazione(Utente utente, Medico medico, Date dataesame,String codice) {
+	public Prenotazione(Utente utente, Medico medico, Date dataesame,Date datapren,String codice,Esame esame) {
 		this.utente = utente;
 		this.medico = medico;
-		//this.datapren = datapren;
+		this.datapren = datapren;
 		this.dataesame = dataesame;
 		this.codice = codice;
+		this.esame = esame;
 	}
 
 

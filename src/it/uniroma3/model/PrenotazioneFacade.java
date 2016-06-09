@@ -26,8 +26,8 @@ public class PrenotazioneFacade {
 		return pren;
 	}
 
-	public Prenotazione createPrenotazione(Utente utente, Medico medico, Date dataesame, String codice) {
-		Prenotazione pren = new Prenotazione(utente,medico,dataesame,codice);
+	public Prenotazione createPrenotazione(Utente utente, Medico medico, Date dataesame,Date datapren,String codice,Esame esame) {
+		Prenotazione pren = new Prenotazione(utente,medico,dataesame,datapren,codice,esame);
 		em.persist(pren);
 		return pren;
 	}

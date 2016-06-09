@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 
 @Stateless
@@ -31,5 +32,12 @@ public class EsameFacade {
 		Esame esame = em.find(Esame.class, id);
 		return esame;
 	}
+
+	public Esame getEsame(String code) {
+		Query query=em.createQuery("SELECT e FROM Esame e WHERE e.codice = :c", Esame.class);
+		query.setParameter("c", code);
+		return (Esame) query.getSingleResult();
+	}
+
 
 }

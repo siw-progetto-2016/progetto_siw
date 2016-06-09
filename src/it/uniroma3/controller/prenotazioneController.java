@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
@@ -23,15 +24,35 @@ public class prenotazioneController {
 	private Date dataesame;
 	private Date datapren;
 	private Utente utente;
+	private String error;
 	private Prenotazione prenotazione;
 	private List<Prenotazione> prenotazioni;
 
+	@ManagedProperty(value="#{esameController}")
+	private esameController esameController;
+	
+	@ManagedProperty(value="#{utenteController}")
+	private utenteController utenteController;
+	
+	@ManagedProperty(value="#{medicoController}")
+	private medicoController medicoController;
+	 
 	@EJB
 	private PrenotazioneFacade prenotazioneFacade;
-	
+
 	public String createPrenotazione() {
-		this.prenotazione = prenotazioneFacade.createPrenotazione(utente,medico,dataesame,codice);
-		return "prenotazione"; 
+		this.datapren = new Date();
+		try {
+			this.esame = esameController.findByCode();
+			this.utente = utenteController.findByUsername();
+			this.medico = medicoController.findByUsername();
+		}
+		catch (EJBException e) {
+			this.setError("Non trovato nel database");
+			return "newprenotazione";
+		}
+		this.prenotazione = prenotazioneFacade.createPrenotazione(utente,medico,dataesame,datapren,codice,esame);
+		return "prenok"; 
 	}
 
 	public String listaPrenotazioni(Utente utente) {
@@ -119,7 +140,39 @@ public class prenotazioneController {
 	public void setUtente(Utente utente) {
 		this.utente = utente;
 	}
-	
+
+	public esameController getEsameController() {
+		return esameController;
+	}
+
+	public void setEsameController(esameController esameController) {
+		this.esameController = esameController;
+	}
+
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
+	}
+
+	public utenteController getUtenteController() {
+		return utenteController;
+	}
+
+	public void setUtenteController(utenteController utenteController) {
+		this.utenteController = utenteController;
+	}
+
+	public medicoController getMedicoController() {
+		return medicoController;
+	}
+
+	public void setMedicoController(medicoController medicoController) {
+		this.medicoController = medicoController;
+	}
+
 
 
 }

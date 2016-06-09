@@ -6,7 +6,7 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<title>Pagina principale</title>
+<title>Login utente</title>
 </head>
 <body>
 	<f:view>

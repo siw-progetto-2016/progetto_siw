@@ -8,12 +8,18 @@ import javax.persistence.Query;
 
 @Stateless
 public class UtenteFacade {
-	
+
 	@PersistenceContext(unitName = "progetto-unit")
 	private EntityManager em;
 
 	public Utente convalida(String userName, String pwd) {
 		Query q = em.createQuery("SELECT u FROM Utente u WHERE u.userName='"+ userName + "' AND u.pwd='"+pwd+"'");
+		Utente u = (Utente)q.getSingleResult();
+		return u;
+	}
+
+	public Utente getUtente(String userName) {
+		Query q = em.createQuery("SELECT u FROM Utente u WHERE u.userName='"+ userName + "'");
 		Utente u = (Utente)q.getSingleResult();
 		return u;
 	}
