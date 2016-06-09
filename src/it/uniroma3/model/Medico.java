@@ -22,6 +22,9 @@ public class Medico {
 	private String cognome;
 	@Column(nullable = false)
 	private String specializzazione;
+	@Column(nullable = false,unique = true)
+	private String userName;
+	
 	
 	@OneToMany(mappedBy = "medico", fetch=FetchType.EAGER)
     private List<Prenotazione> prenotazioni;
@@ -69,6 +72,22 @@ public class Medico {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public List<Prenotazione> getPrenotazioni() {
+		return prenotazioni;
+	}
+
+	public void setPrenotazioni(List<Prenotazione> prenotazioni) {
+		this.prenotazioni = prenotazioni;
 	}
 
 
