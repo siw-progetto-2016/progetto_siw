@@ -31,7 +31,7 @@ public class esameController {
 
 	public String createEsame() {
 		this.esame = esameFacade.createEsame(codice,nome,descrizione,costo);
-		return "esame"; 
+		return "esameok"; 
 	}
 
 	public String listaEsami() {

@@ -27,9 +27,10 @@ public class Prerequisito {
 	
 	
 
-	public Prerequisito(String nome, String valore) {
+	public Prerequisito(String nome, String valore,Esame esame) {
 		this.nome = nome;
 		this.valore = valore;
+		this.reqesame = esame;
 	}
 
 	public Long getId() {

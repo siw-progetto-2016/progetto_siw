@@ -22,6 +22,13 @@ public class Indicatore {
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="esame_id")
 	private Esame indesame;
+	
+	
+
+	public Indicatore(String nome, Esame esame) {
+		this.nome = nome;
+		this.indesame = esame;
+	}
 
 	public Long getId() {
 		return id;

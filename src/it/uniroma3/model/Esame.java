@@ -17,7 +17,7 @@ public class Esame {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@Column(nullable = false)
+	@Column(nullable = false,unique = true)
 	private String codice;
 	@Column(nullable = false)
 	private String nome;

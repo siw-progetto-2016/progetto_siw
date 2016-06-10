@@ -16,6 +16,12 @@
 		
 		<a href='<c:url value="/faces/newprenotazione.jsp" />'>Aggiungi una prenotazione</a>
 		<hr></hr>
+		<a href='<c:url value="/faces/newesame.jsp" />'>Aggiungi un nuovo tipo di esame</a>
+		<hr></hr>
+		<a href='<c:url value="/faces/newprerequisito.jsp" />'>Aggiungi un prerequisito ad un tipo di esame</a>
+		<hr></hr>
+		<a href='<c:url value="/faces/newindicatore.jsp" />'>Aggiungi un indicatore ad un tipo di esame</a>
+		<hr></hr>
 		<div>
 			<a href="index.jsp">Pagina principale</a>
 		</div>

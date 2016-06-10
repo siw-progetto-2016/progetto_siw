@@ -18,6 +18,7 @@ public class EsameFacade {
 		Esame esame = new Esame(codice, nome, descrizione, costo);
 		em.persist(esame);
 		return esame;
+		
 	}
 
 	public List<Esame> getAllEsami() {

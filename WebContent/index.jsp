@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="icon" href="css/logo.png">
-<title>Pagina principale</title>
+<title>Clinica GPMG | Pagina principale</title>
 <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -56,15 +56,13 @@
 					</div>
 				</div>
 			</nav>
-			<div class="jumbotron">
-				<div class="container">
-					<img src="css/banner.png" alt="Img"
-						class="img-rounded center-block pull-left">
-						<h6>Analisi mediche di ogni tipo</h6>
-
+			
+				<div class="container-fluid text-center">
+					<img src="css/banner.png" alt="Img" class="img-rounded">
 				</div>
-				
-			</div>
+
+
+			
 
 			<div class="container-fluid text-center">
 

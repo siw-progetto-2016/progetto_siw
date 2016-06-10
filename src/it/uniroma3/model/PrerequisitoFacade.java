@@ -11,8 +11,8 @@ public class PrerequisitoFacade {
 	@PersistenceContext(unitName = "progetto-unit")
 	private EntityManager em;
 
-	public Prerequisito createPrerequisito(String nome, String valore) {
-		Prerequisito prereq = new Prerequisito(nome,valore);
+	public Prerequisito createPrerequisito(String nome, String valore,Esame esame) {
+		Prerequisito prereq = new Prerequisito(nome,valore,esame);
 		em.persist(prereq);
 		return prereq;
 	}
