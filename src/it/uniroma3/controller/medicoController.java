@@ -1,10 +1,13 @@
 package it.uniroma3.controller;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 
 import it.uniroma3.model.Medico;
 import it.uniroma3.model.MedicoFacade;
+import it.uniroma3.model.Prenotazione;
 
 @ManagedBean
 public class medicoController {
@@ -14,6 +17,7 @@ public class medicoController {
 	private String specializzazione;
 	private String userName;
 	private Medico medico;
+	private List<Prenotazione> prenotazioni;
 
 	@EJB
 	private MedicoFacade medicoFacade;

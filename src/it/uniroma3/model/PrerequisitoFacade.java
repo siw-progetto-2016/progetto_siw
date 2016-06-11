@@ -28,5 +28,9 @@ public class PrerequisitoFacade {
 		Prerequisito prereq = em.find(Prerequisito.class, id);
 		return prereq;
 	}
-
+	
+	public Prerequisito getPrerequisito(String nome) {
+		Prerequisito prereq = em.find(Prerequisito.class, nome);
+		return prereq;
+	}
 }

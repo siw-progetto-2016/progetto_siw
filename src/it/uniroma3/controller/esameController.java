@@ -3,6 +3,7 @@ package it.uniroma3.controller;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
@@ -22,6 +23,7 @@ public class esameController {
 	private float costo;
 	private Esame esame;
 	private Utente utente;
+	private String error;
 	private List<Esame> esami;
 	private List<Prerequisito> prerequisiti;
 	private List<Indicatore> indicatori;;
@@ -29,11 +31,23 @@ public class esameController {
 	@EJB
 	private EsameFacade esameFacade;
 
-	public String createEsame() {
-		this.esame = esameFacade.createEsame(codice,nome,descrizione,costo);
-		return "esameok"; 
+	public String createEsame(){
+		Esame a = null;
+		try{
+			a=findByCode();
+		}
+		catch(EJBException e){
+		}
+		
+		if(a==null){
+			this.esame = esameFacade.createEsame(codice,nome,descrizione,costo);
+			return "esameok"; 
+		}
+		else{
+			this.setError("Codice esame già esistente");
+			return "newesame";
+		}
 	}
-
 	public String listaEsami() {
 		this.esami = esameFacade.getAllEsami();
 		return "esami"; 
@@ -151,6 +165,14 @@ public class esameController {
 
 	public void setUtente(Utente utente) {
 		this.utente = utente;
+	}
+
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
 	}
 
 

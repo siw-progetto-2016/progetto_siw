@@ -32,15 +32,29 @@ public class prerequisitoController {
 	
 	
 	public String createPrerequisito() {
-		try {
-			this.esame = esameController.findByCode();
+		Prerequisito a = null;
+		
+		try{
+			a=findByName();
 		}
-		catch (EJBException e) {
-			this.setError("Esame non trovato nel database");
+		catch(EJBException e){
+		}
+		
+		if(a==null){
+			try {
+				this.esame = esameController.findByCode();
+			}
+			catch (EJBException e) {
+				this.setError("Esame non trovato nel database");
+				return "newprerequisito";
+			}
+			this.prereq = prerequisitoFacade.createPrerequisito(nome,valore,esame);
+			return "prereqok"; 
+		}
+		else {
+			this.setError("Nome prerequisito già esistente");
 			return "newprerequisito";
 		}
-		this.prereq = prerequisitoFacade.createPrerequisito(nome,valore,esame);
-		return "prereqok"; 
 	}
 
 	public String listaPrerequisiti() {
@@ -58,6 +72,11 @@ public class prerequisitoController {
 		return "prerequisito";
 	}
 
+	public Prerequisito findByName() {
+		this.prereq = prerequisitoFacade.getPrerequisito(nome);
+		return prereq;
+	}
+	
 	public Long getId() {
 		return id;
 	}

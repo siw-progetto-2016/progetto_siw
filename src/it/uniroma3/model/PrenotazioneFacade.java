@@ -20,9 +20,21 @@ public class PrenotazioneFacade {
 		query.setParameter("c", utente);
 		return query.getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Prenotazione> getAllPrenotazioni(Medico medico) {
+		Query query=em.createQuery("SELECT o FROM Prenotazione o WHERE o.medico = :c", Prenotazione.class);
+		query.setParameter("c", medico);
+		return query.getResultList();
+	}
 
 	public Prenotazione getPrenotazione(long id) {
 		Prenotazione pren = em.find(Prenotazione.class, id);
+		return pren;
+	}
+	
+	public Prenotazione getPrenotazione(String codice) {
+		Prenotazione pren = em.find(Prenotazione.class, codice);
 		return pren;
 	}
 

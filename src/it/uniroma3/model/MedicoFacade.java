@@ -16,4 +16,6 @@ public class MedicoFacade {
 		Medico m = (Medico)q.getSingleResult();
 		return m;
 	}
+	
+
 }

@@ -41,18 +41,38 @@ public class prenotazioneController {
 	private PrenotazioneFacade prenotazioneFacade;
 
 	public String createPrenotazione() {
-		this.datapren = new Date();
-		try {
-			this.esame = esameController.findByCode();
-			this.utente = utenteController.findByUsername();
-			this.medico = medicoController.findByUsername();
+		Prenotazione a = null;
+		
+		try{
+			a=findByCode();
 		}
-		catch (EJBException e) {
-			this.setError("Non trovato nel database");
+		catch(EJBException e){
+		}
+		
+		if(a==null){
+			this.datapren = new Date();
+			try {
+				this.esame = esameController.findByCode();
+				this.utente = utenteController.findByUsername();
+				this.medico = medicoController.findByUsername();
+			}
+			catch (EJBException e) {
+				this.setError("Non trovato nel database");
+				return "newprenotazione";
+			}
+			this.prenotazione = prenotazioneFacade.createPrenotazione(utente,medico,dataesame,datapren,codice,esame);
+			return "prenok"; 
+		}
+		else{
+			this.setError("Codice prenotazione già esistente");
 			return "newprenotazione";
 		}
-		this.prenotazione = prenotazioneFacade.createPrenotazione(utente,medico,dataesame,datapren,codice,esame);
-		return "prenok"; 
+
+	}
+	
+	public String listaPrenotazioni(Medico medico) {
+		this.prenotazioni = prenotazioneFacade.getAllPrenotazioni(medico);
+		return "prenotazioni"; 
 	}
 
 	public String listaPrenotazioni(Utente utente) {
@@ -74,6 +94,13 @@ public class prenotazioneController {
 	}
 
 
+	public Prenotazione findByCode() {
+		this.prenotazione = prenotazioneFacade.getPrenotazione(codice);
+		return prenotazione;
+	}
+
+	
+	
 	public long getId() {
 		return id;
 	}

@@ -22,6 +22,8 @@
 		<hr></hr>
 		<a href='<c:url value="/faces/newindicatore.jsp" />'>Aggiungi un indicatore ad un tipo di esame</a>
 		<hr></hr>
+		<a href='<c:url value="/faces/prenotazionimedico.jsp" />'>Mostra prenotazioni per medico</a>
+		<hr></hr>
 		<div>
 			<a href="index.jsp">Pagina principale</a>
 		</div>

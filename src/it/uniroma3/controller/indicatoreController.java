@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedProperty;
 import it.uniroma3.model.Esame;
 import it.uniroma3.model.Indicatore;
 import it.uniroma3.model.IndicatoreFacade;
+import it.uniroma3.model.Prerequisito;
 
 @ManagedBean
 public class indicatoreController {
@@ -31,15 +32,30 @@ public class indicatoreController {
 
 
 	public String createIndicatore() {
-		try {
-			this.esame = esameController.findByCode();
+		Indicatore a = null;
+		
+		try{
+			a=findByName();
 		}
-		catch (EJBException e) {
-			this.setError("Esame non trovato nel database");
+		catch(EJBException e){
+		}
+		
+		if(a==null){
+			try {
+				this.esame = esameController.findByCode();
+				a=findByName();
+			}
+			catch (EJBException e) {
+				this.setError("Esame non trovato nel database");
+				return "newindicatore";
+			}
+			this.indicatore = indicatoreFacade.createIndicatore(nome,esame);
+			return "indiok"; 
+		}
+		else {
+			this.setError("Nome indicatore già esistente");
 			return "newindicatore";
 		}
-		this.indicatore = indicatoreFacade.createIndicatore(nome,esame);
-		return "indiok"; 
 	}
 
 	public String listaIndicatori() {
@@ -57,7 +73,10 @@ public class indicatoreController {
 		return "indicatore";
 	}
 
-
+	public Indicatore findByName() {
+		this.indicatore = indicatoreFacade.getIndicatore(nome);
+		return indicatore;
+	}
 
 
 	public Long getId() {

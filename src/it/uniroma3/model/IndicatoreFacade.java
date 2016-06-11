@@ -30,6 +30,9 @@ public class IndicatoreFacade {
 		return indicatore;
 	}
 	
-
+	public Indicatore getIndicatore(String nome) {
+		Indicatore indicatore = em.find(Indicatore.class, nome);
+		return indicatore;
+	}
 
 }
