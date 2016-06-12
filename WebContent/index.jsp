@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=US-ASCII"
-	pageEncoding="US-ASCII"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -18,7 +18,7 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="jumbotron.css" rel="stylesheet">
+<link href="css/jumbotron-narrow.css" rel="stylesheet">
 
 </head>
 <body>
@@ -49,72 +49,60 @@
 						</ul>
 
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href='<c:url value="/faces/login.jsp"/>'><span
-									class="glyphicon glyphicon-log-in"></span> Login</a></li>
+							<li><a href='<c:url value="/faces/login.jsp"/>'> Login</a></li>
 						</ul>
 
 					</div>
 				</div>
 			</nav>
-			
-				<div class="container-fluid text-center">
+
+			<div class="container">
+				<div class="row marketing">
 					<img src="css/banner.png" alt="Img" class="img-rounded">
-				</div>
-
-
-			
-
-			<div class="container-fluid text-center">
-
-				<div class="row content">
-
-					<div class="text-left" style='background-color: #2ba6cb;'>
-						<img src="css/img1.jpg" alt="Img" class="img-rounded center-block">
-					</div>
-					<div class="col-sm-2 sidenav">
-						<p>
-							<a href="#">Link</a>
-						</p>
-						<p>
-							<a href="#">Link</a>
-						</p>
-						<p>
-							<a href="#">Link</a>
-						</p>
-					</div>
-
-					<div class="col-sm-8 text-left">
-						<h1>Welcome</h1>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-							sed do eiusmod tempor incididunt ut labore et dolore magna
-							aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-							ullamco laboris nisi ut aliquip ex ea commodo consequat.
-							Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-							officia deserunt mollit anim id est laborum consectetur
-							adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-							dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-							exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat.</p>
-						<hr>
-						<h3>Test</h3>
-						<p>Lorem ipsum...</p>
-					</div>
-					<div class="col-sm-2 sidenav">
-						<div class="well">
-							<p>ADS</p>
-						</div>
-						<div class="well">
-							<p>ADS</p>
-						</div>
+					<div class="col-lg-6">
+						<p>Esami clinici.</p>
 					</div>
 				</div>
 			</div>
+			<div class="container-fluid">
+				<div class="text-center" style='background-color: #2ba6cb;'>
+					<img src="css/img1.jpg" alt="Img" class="img-rounded center-block">
+				</div>
+			</div>
 
+			<div class="container">
+				<div class="row marketing">
+
+					<div class="col-lg-6">
+						<h1>Presentazione</h1>
+						<p>La GPMG è una moderna struttura sanitaria che ha sviluppato
+							un innovativo modello organizzativo valorizzando le eccellenze
+							medico-chirurgiche ad elevata specializzazione.</p>
+						<hr>
+						<h3>I servizi offerti comprendono:</h3>
+						<ul type="disc">
+							<li>Attrezzature mediche di ultima generazione</li>
+							<li>Possibilità di consultare le proprie prenotazioni online</li>
+							<li>Ampia scelta di esami</li>
+							<li>Risultati di un esame a portata di click</li>
+						</ul>
+						<h3>Consulta gli esami</h3>
+						<h:commandLink action="#{esameController.listaEsami}"
+							styleClass="btn btn-info">
+						 Vai
+						</h:commandLink>
+						<h3>Se sei già registrato</h3>
+						<a href="login.jsp" class="btn btn-success" role="button">Login</a>
+
+
+				</div>
+			</div>
+</div>
 
 		</h:form>
 		<footer class="footer text-center">
 			<div class="container">
-				<p class="text-muted">Place sticky footer content here.</p>
+				<p class="text-muted">©GPMG 2016</p>
 			</div>
 		</footer>
 
