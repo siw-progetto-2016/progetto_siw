@@ -63,10 +63,10 @@
 
 									</span>
 								</div>
-								
+								<!-- 
 								<div>
 									<label class="alert alert-danger" for="inputError1">${utenteController.error}</label>
-								</div>
+								</div> -->
 							</div>
 
 						</div>
