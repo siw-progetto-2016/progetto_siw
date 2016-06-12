@@ -11,7 +11,7 @@ import javax.faces.bean.ManagedProperty;
 import it.uniroma3.model.Esame;
 import it.uniroma3.model.Indicatore;
 import it.uniroma3.model.IndicatoreFacade;
-import it.uniroma3.model.Prerequisito;
+
 
 @ManagedBean
 public class indicatoreController {

@@ -64,6 +64,22 @@ public class medicoController {
 		this.medicoFacade = medicoFacade;
 	}
 
+	public Medico getMedico() {
+		return medico;
+	}
+
+	public void setMedico(Medico medico) {
+		this.medico = medico;
+	}
+
+	public List<Prenotazione> getPrenotazioni() {
+		return prenotazioni;
+	}
+
+	public void setPrenotazioni(List<Prenotazione> prenotazioni) {
+		this.prenotazioni = prenotazioni;
+	}
+
 
 
 }
