@@ -16,6 +16,7 @@
 <title>Clinica GPMG | Pagina principale</title>
 <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/sticky-footer-navbar.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
 <link href="css/jumbotron-narrow.css" rel="stylesheet">

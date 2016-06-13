@@ -55,9 +55,10 @@ public class prenotazioneController {
 				this.esame = esameController.findByCode();
 				this.utente = utenteController.findByUsername();
 				this.medico = medicoController.findByUsername();
+				this.setError(null);
 			}
 			catch (EJBException e) {
-				this.setError("Non trovato nel database");
+				this.setError("Medico,utente o esame non trovato nel database");
 				return "newprenotazione";
 			}
 			this.prenotazione = prenotazioneFacade.createPrenotazione(utente,medico,dataesame,datapren,codice,esame);

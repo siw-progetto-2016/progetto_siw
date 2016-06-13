@@ -17,6 +17,7 @@
 
 <!-- Custom styles for this template -->
 <link href="css/jumbotron-narrow.css" rel="stylesheet">
+<link href="css/sticky-footer-navbar.css" rel="stylesheet">
 <title>Clinica GPMG | Esami offerti</title>
 </head>
 <body>

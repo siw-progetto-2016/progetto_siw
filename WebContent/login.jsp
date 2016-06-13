@@ -14,6 +14,8 @@
 <link rel="icon" href="css/logo.png">
 <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/sticky-footer-navbar.css" rel="stylesheet">
+
 
 <title>Clinica GPMG | Login utente</title>
 </head>
@@ -63,10 +65,10 @@
 
 									</span>
 								</div>
-								<!-- 
-								<div>
-									<label class="alert alert-danger" for="inputError1">${utenteController.error}</label>
-								</div> -->
+								 
+								<div class="has-error">
+									<label class="control-label" for="inputError">${utenteController.error}</label>
+								</div> 
 							</div>
 
 						</div>
