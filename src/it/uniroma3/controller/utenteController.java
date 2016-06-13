@@ -42,11 +42,16 @@ public class utenteController {
 			return "login";
 		} 
 		if(this.ruolo.equals("admin"))
+		{
+			this.error = null;
 			return "amministratore";
+		}
 		else
 		if(this.ruolo.equals("user"))
+		{
+			this.error = null;
 			return "paziente";
-		
+		}
 					
 		return "login";
 	}

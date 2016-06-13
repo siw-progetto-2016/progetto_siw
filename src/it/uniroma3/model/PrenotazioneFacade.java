@@ -34,8 +34,9 @@ public class PrenotazioneFacade {
 	}
 	
 	public Prenotazione getPrenotazione(String codice) {
-		Prenotazione pren = em.find(Prenotazione.class, codice);
-		return pren;
+		Query query=em.createQuery("SELECT p FROM Prenotazione p WHERE p.codice = :c", Prenotazione.class);
+		query.setParameter("c", codice);
+		return (Prenotazione) query.getSingleResult();
 	}
 
 	public Prenotazione createPrenotazione(Utente utente, Medico medico, Date dataesame,Date datapren,String codice,Esame esame) {
