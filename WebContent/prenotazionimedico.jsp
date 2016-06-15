@@ -72,7 +72,7 @@
 				<div>
 					<h:commandButton styleClass="btn btn-success"
 						value="Cerca"
-						action="#{prenotazioneController.listaPrenotazioni(medicoController.findByUsername())}" />
+						action="#{prenotazioneController.prenotazioniByMedico}" />
 				</div>
 
 

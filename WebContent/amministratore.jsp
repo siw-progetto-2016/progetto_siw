@@ -74,7 +74,7 @@
 					<li><a href='<c:url value="/faces/newindicatore.jsp" />'>Nuovo indicatore</a></li>
 					<li><a href='<c:url value="/faces/prenotazionimedico.jsp" />'>Prenotazioni per medico</a></li>
 				</ul>
-			</div>
+</div>
 
 <hr></hr>
 

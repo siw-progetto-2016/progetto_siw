@@ -81,7 +81,7 @@
 			<div style="clear: both;"></div>
 			<div>
 				<h:commandButton styleClass="btn btn-success"
-					value="Registra indicatore"
+					value="Registra esame"
 					action="#{esameController.createEsame}" />
 			</div>
 		</h:form>

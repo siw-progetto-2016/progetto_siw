@@ -71,7 +71,7 @@
 				<div style="clear: both;"></div>
 				<div>
 					<h:commandButton styleClass="btn btn-success"
-						value="Registra prenotazione"
+						value="Registra prerequisito"
 						action="#{prerequisitoController.createPrerequisito}" />
 				</div>
 			</h:form>

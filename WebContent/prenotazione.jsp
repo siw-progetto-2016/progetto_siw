@@ -1,4 +1,6 @@
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
+<%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +18,26 @@
 </head>
 <body>
 	<f:view>
+	<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#myNavbar">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="faces/index.jsp">GPMG</a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="faces/index.jsp">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="#">Contatti</a></li>
+					</ul>
+
+				</div>
+			</div>
+		</nav>
 		<h2>Dettagli prenotazione</h2>
 		<div class="col-sm-4">
 				<ul class="list-group">

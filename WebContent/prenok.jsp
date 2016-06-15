@@ -1,3 +1,6 @@
+<%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
+<%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +45,7 @@
 	
 	<div style="clear: both;"></div>
 	<div class="container-fluid text-center">
-		<a href='<c:url value="/faces/amministratore.jsp" />' class="btn btn-info" role="button">Profilo amministratore</a>
+		<a href="amministratore.jsp" class="btn btn-info" role="button">Profilo amministratore</a>
 	</div>
 
 
