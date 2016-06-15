@@ -35,9 +35,7 @@
 							<li><a href="#">About</a></li>
 							<li><a href="#">Contatti</a></li>
 						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li><a href='<c:url value="/faces/login.jsp"/>'>Login</a></li>
-						</ul>
+
 					</div>
 				</div>
 			</nav>
