@@ -71,8 +71,9 @@ public class prenotazioneController {
 
 	}
 	
-	public String listaPrenotazioni(Medico medico) {
-		this.prenotazioni = prenotazioneFacade.getAllPrenotazioni(medico);
+	public String prenotazioniByMedico() {
+		this.medico = medicoController.findByUsername();
+		this.prenotazioni = prenotazioneFacade.prenotazioniByMedico(medico);
 		return "prenotazioni"; 
 	}
 

@@ -23,7 +23,7 @@ public class medicoController {
 	private MedicoFacade medicoFacade;
 	
 	public Medico findByUsername() {
-		 this.medico = medicoFacade.getMedico(userName);
+		 this.medico = medicoFacade.getMedico(userName,nome,cognome);
 		 return medico;
 	}
 

@@ -22,7 +22,7 @@ public class PrenotazioneFacade {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Prenotazione> getAllPrenotazioni(Medico medico) {
+	public List<Prenotazione> prenotazioniByMedico(Medico medico) {
 		Query query=em.createQuery("SELECT o FROM Prenotazione o WHERE o.medico = :c", Prenotazione.class);
 		query.setParameter("c", medico);
 		return query.getResultList();
