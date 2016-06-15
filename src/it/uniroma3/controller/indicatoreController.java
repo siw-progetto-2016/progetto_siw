@@ -43,7 +43,7 @@ public class indicatoreController {
 		if(a==null){
 			try {
 				this.esame = esameController.findByCode();
-				a=findByName();
+				
 			}
 			catch (EJBException e) {
 				this.setError("Esame non trovato nel database");

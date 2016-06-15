@@ -30,25 +30,25 @@ public class prenotazioneController {
 
 	@ManagedProperty(value="#{esameController}")
 	private esameController esameController;
-	
+
 	@ManagedProperty(value="#{utenteController}")
 	private utenteController utenteController;
-	
+
 	@ManagedProperty(value="#{medicoController}")
 	private medicoController medicoController;
-	 
+
 	@EJB
 	private PrenotazioneFacade prenotazioneFacade;
 
 	public String createPrenotazione() {
 		Prenotazione a = null;
-		
+
 		try{
 			a=findByCode();
 		}
 		catch(EJBException e){
 		}
-		
+
 		if(a==null){
 			this.datapren = new Date();
 			try {
@@ -70,11 +70,19 @@ public class prenotazioneController {
 		}
 
 	}
-	
+
 	public String prenotazioniByMedico() {
-		this.medico = medicoController.findByUsername();
+		try{
+			this.medico = medicoController.findByMedico();
+		}
+		catch (EJBException e) {
+			this.setError("Medico non trovato nel database");
+			return "prenotazionimedico";
+		}
+		
 		this.prenotazioni = prenotazioneFacade.prenotazioniByMedico(medico);
 		return "prenotazioni"; 
+		
 	}
 
 	public String listaPrenotazioni(Utente utente) {
@@ -101,8 +109,8 @@ public class prenotazioneController {
 		return prenotazione;
 	}
 
-	
-	
+
+
 	public long getId() {
 		return id;
 	}
