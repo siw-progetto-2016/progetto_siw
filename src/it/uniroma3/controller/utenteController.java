@@ -52,7 +52,6 @@ public class utenteController {
 			this.error = null;
 			return "paziente";
 		}
-					
 		return "login";
 	}
 	

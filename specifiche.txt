@@ -1,0 +1,73 @@
+Progetto: progetto-siw-giugno-2016
+
+Tipo progetto: AVANZATO
+
+Sono state usate  le seguenti tecnologie: Bootstrap,JPA(OPENJPA)  JEE e JSF.
+
+Sono stati imnplementati i primi 5 casi d'uso,ampliati e modificati.
+
+Nel databse sono presenti tre utenti: 		username: bianchino password: abcdef
+											username: peppino password: 654321 
+											username: doctor password: 123456
+
+
+Soltanto bianchino ha il ruolo di amministratore,la pagina di login è una sola, il controllo è affidato alla
+classe "utenteController"
+
+
+
+Descrizione testuale per i casi d'uso di: progetto-siw-giugno-2016.
+
+Caso d'uso UC1: consulta offerta 
+  Attore primario: utente non registrato.
+  
+  Scenario principale di successo: 
+  1. L'utente consulta l'elenco degli esami disponibili.
+  2. Il sistema mostra gli esami presenti.
+  3. L'utente richiede dettagli (costo, descrizione) per  l'esame scelto.
+  4. Il sistema mostra i dettagli dell'esame scelto dall'utente.
+  5. L'utente ripete i passi precedenti un numero indefinito di volte.
+  
+Caso d'uso UC2: crea esame (prenotazione) 
+  Attore primario: amministrazione.
+  
+  Scenario principale di successo: 
+  1. L'ammistrazione seleziona l'operzione crea prenotazione.
+  2. Il sistema mostra una form dove inserire i dati relativi alla prenotazione.
+  3. L'amministrazione inserisci tutti i dati, codice prenotazione,data dell'esame,username medico,username utente,codice dell'esame.
+  4. Il sistema registra la prenotazione (impostando automaticamente la data di prenotazione).
+  Precondizioni: l'amministratore è identificato e autenticato
+
+  
+Caso d'uso UC3: consulta risultati proprio esame.
+  Attore primario: paziente.
+
+  Scenario principale di successo:
+  1. Il paziente consulta l'elenco delle proprie prenotazioni.
+  2. Il sistema mostra al paziente l'elenco delle sue prenotazioni.
+  3. Il paziente chiede il dettaglio di una prenotazione.
+  4. Il sistema mostra i dettagli della prenotazione.
+  5. Il paziente ripete i passi precedenti finché necessario.
+  Precondizioni: il paziente è identificato e autenticato.
+  
+Caso d'uso UC4: inserimento tipologia di esame (esame)
+  Attore primario: amministrazione.
+  
+  Scenario principale di successo:
+  1. L'ammistrazione seleziona l'operzione crea esame.
+  2. Il sistema mostra una form dove inserire i dati relativi alla esame.
+  3. L'amministratore inserisce i dati dell'esame,codice,nome,descrizione,prezzo.
+  4. Il sistema registra il nuovo esame.
+  5. Il sistema mostra un pagina di successo, con elencate varie operazioni quali: inserisci prerequisito,inserisci indicatore.
+  5. I punti precedenti vengono ripetuti fino a che necessario.
+  Precondizioni: l'amministratore è identificato e autenticato.
+  
+Caso d'uso UC5: esami effettuati da un medico 
+  Attore primario: amministrazione.
+
+  Scenario principale di successo:
+  1. L’amministratore seleziona l'operazione prenotazioni per medico.
+  2. Il sistema mostra un form dove l'amministratore inserisce il nome,cognome,e username del medico
+  3. Il sistema mostra all’amministratore tutti gli esami effettuati dal medico con i relativi dettagli.
+  Precondizioni: l’amministratore è identificato e autenticato.
+
